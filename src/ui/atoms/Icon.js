@@ -17,8 +17,6 @@ export const icons = {
   social: Social
 }
 
-console.log(icons.avatar);
-
 const IconImage = styled.img`
   width: ${ props => props.url === icons.avatar ? '32px' : '24px'};
   height: ${ props => props.url === icons.avatar ? '32px' : '24px'};
@@ -42,21 +40,22 @@ const Icon = props => {
   const { url } = props;
     return (
       <IconWrapper>
-        <IconImage src={url}/>
+        <IconImage {...props} src={url}/>
       </IconWrapper>
     )
 };
 
 Icon.propTypes = {
 
-  // J'ai voulu utiliser definir le proptypes pourque ca ne prenne en compte que ce qui est defini
-  // dans icons plus haut, ca m'affiche bien les icons mais j'ai une erreur dans la console 
-  // j'ai donc mis un PropTypes.String pour eviter cela
+  // J'ai voulu definir le proptypes pour que ca ne prenne en compte que ce qui est defini
+  // dans icons plus haut, seulement cela ne marche pas avec les url j'ai donc defini en tant que string
   // url: PropTypes.oneOf(Object.keys(icons))
 
   url: PropTypes.string
 };
 
-Icon.defaultProps = {};
+Icon.defaultProps = {
+  url: null
+};
 
 export default Icon;
